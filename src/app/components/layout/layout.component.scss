@@ -1,0 +1,12 @@
+main{
+    padding: 15px 30px;
+    display: flex;
+    gap: 15px;
+    app-table {
+        flex: 0 0 75%;
+      }
+      
+    app-sider-right {
+        flex: 0 0 25%;
+      }
+}

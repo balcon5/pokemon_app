@@ -1,0 +1,29 @@
+<div class="card">
+    <table class="table-pokemons">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Favorito</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            <tr *ngFor="let pokemon of pokemons">
+                <td>{{pokemon.name}}</td>
+                <td>
+                    <i class="fi fi-rr-star" *ngIf="!pokemon.favorite" (click)="setFavoritePokemon(pokemon.name)"></i>
+                    <i class="fi fi-sr-star" style="color: gold;" *ngIf="pokemon.favorite"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="paginator-table">
+        <span class="number-paginator">{{initialPokemonOfPage}}</span>
+        <span> - </span>
+        <span class="number-paginator">{{finalPokemonOfPage}}</span>
+        <span> de </span>
+        <span> {{totalPokemons}} </span>
+        <i class="fi fi-sr-angle-left" (click)="paginatorAction('prev')"></i>
+        <i class="fi fi-sr-angle-right" (click)="paginatorAction('next')"></i>
+    </div>
+</div>
