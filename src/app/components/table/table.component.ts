@@ -146,8 +146,10 @@ export class TableComponent implements OnInit, OnDestroy {
   searchPokemon(){
     this.valueSearchPokemon = this.inputSearch.nativeElement.value;
     this.initialPokemonOfPage = 1;
-    this.finalPokemonOfPage = 10;
+    this.finalPokemonOfPage = 10
     this.pokemonsToShow();
+    this.totalPokemons > this.finalPokemonOfPage ? this.finalPokemonOfPage = 10 : this.finalPokemonOfPage = this.totalPokemons;
+
 
   }
 

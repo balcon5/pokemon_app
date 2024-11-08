@@ -1,1 +1,37 @@
-<p>dialog works!</p>
+<div class="overlay-dialog">
+    <div class="card" style="width: 320px; height: 480px;">
+        <i class="fi fi-br-cross btn-close" (click)="closeDialogInter()"></i>
+        <div class="head-card">
+            
+            <h3 style="align-items: center;
+                       align-content: center;
+                       justify-content: space-between;
+                       width: 100%;
+                       margin-top: 13px;
+                       display:flex;">
+                Pokemon favorito
+                <i class="fi fi-sr-star" style="color: gold;"></i>
+            </h3>
+        </div>
+        <div class="container-poke-detail">
+        
+            <img src="{{favPokemon?.imgUrlLarge}}" alt="">
+             <h3 style="text-align: center;">
+                 {{favPokemon?.name}} 
+             </h3>
+            <div class="row-detal-pokemon">
+                 <p>Altura</p>
+                 <p>{{favPokemon?.height}}</p>
+            </div>
+            <div class="row-detal-pokemon">
+                 <p>Peso</p>
+                 <p>{{favPokemon?.weight}}</p>
+            </div>
+            <div class="row-detal-pokemon" *ngFor="let types of favPokemon?.types">
+             <p>Tipo</p>
+             <p>{{types.type.name}}</p>
+        </div>
+     </div>
+    </div>
+
+</div>

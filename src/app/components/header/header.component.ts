@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 import { Pokemon } from 'src/app/interfaces/pokemon.interface';
 
@@ -11,6 +11,7 @@ export class HeaderComponent {
 
 
   public favoritePokemon: Pokemon | null = null;
+  @Output()openDialog:EventEmitter<boolean> = new EventEmitter<boolean>(false);
 
   constructor(private pokemonService: PokemonService){
 
@@ -24,5 +25,10 @@ export class HeaderComponent {
     
 
   }
+
+  openDialogInter(){
+    this.openDialog.emit(true);
+  }
+  
 
 }

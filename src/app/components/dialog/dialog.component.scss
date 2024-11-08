@@ -1,0 +1,23 @@
+.overlay-dialog{
+    display: flex;
+    background: rgba(0,0,0,0.34);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+}
+
+
+    .btn-close{
+        position: absolute;
+        top: 12px;
+        right: 13px;
+        color: #444;
+        cursor: pointer;
+        font-size: 12px;
+    }
+

@@ -8,10 +8,21 @@ import { PokemonList } from 'src/app/interfaces/pokemon.interface';
 })
 export class LayoutComponent {
 
+  public activeDialog = false;
   public pokemons:PokemonList[] = [{name:'',favorite:false}];
 
   getPokemons(evt: PokemonList[]){
     console.log('evt', evt);
     this.pokemons = evt;
   }
+
+  closeDialog(){
+    this.activeDialog=false;
+  }
+
+  openDialog(){
+    this.activeDialog=true;
+  }
+
+
 }
