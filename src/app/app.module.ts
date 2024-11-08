@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './components/layout/layout.module';
 import { PokemonService } from './services/pokemon.service';
 import { HttpClientModule } from '@angular/common/http';
+import { APP_BASE_HREF } from '@angular/common';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutModule,
     HttpClientModule
   ],
-  providers: [PokemonService],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/pokemon-app/' },
+                PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

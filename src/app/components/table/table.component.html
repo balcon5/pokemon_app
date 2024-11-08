@@ -24,7 +24,7 @@
                 <div class="td">{{pokemon.name}}</div>
                 <div class="td">
                     <i class="fi fi-rr-star" *ngIf="!pokemon.favorite" (click)="setFavoritePokemon(pokemon.name, $event)"></i>
-                    <i class="fi fi-sr-star" style="color: gold;" *ngIf="pokemon.favorite"></i>
+                    <i class="fi fi-rr-star" style="color: gold;" *ngIf="pokemon.favorite"></i>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
         <span class="number-paginator">{{finalPokemonOfPage}}</span>
         <span> de </span>
         <span> {{totalPokemons}} </span>
-        <i class="fi fi-sr-angle-left" (click)="paginatorAction('prev')"></i>
-        <i class="fi fi-sr-angle-right" (click)="paginatorAction('next')"></i>
+        <i class="fi fi-rr-angle-left" (click)="paginatorAction('prev')"></i>
+        <i class="fi fi-rr-angle-right" (click)="paginatorAction('next')"></i>
     </div>
 </div>
