@@ -9,10 +9,78 @@ html,body{
     font-family: "Roboto", serif;
 }
 
+h3{
+    color: #555;
+    margin: 0;
+}
+
+h4{
+    color: #555;
+    margin: 0;
+}
+
 .card{
     width: calc(100% - 60px);
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     padding: 30px;
     background: #fff;
+    .head-card{
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        display: flex;
+        padding: 0px 0px 20px;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.table-pokemons{
+    width: 100%;
+    border-collapse: collapse;
+    color: #555;
+    .thead{
+        .tr{
+            display: flex;
+        }
+        .th{
+            width: 50%;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 10px 10px 10px;
+            font-weight: bold;
+        }
+        .th:last-child{
+            text-align: right;
+        }
+    }
+    .tbody{
+        .tr{
+            display: flex;
+            cursor: pointer;
+        }
+        .none-select{
+            cursor: default !important;
+            &:hover{
+                background:#fff !important;
+            }
+        }
+        .tr:last-child td{
+            border-bottom: none;
+        }
+    
+        .tr:hover{
+            background-color: #eaf9ff;
+        }
+        .td{
+            width: 50%;
+            padding: 10px 10px 10px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .td:last-child{
+            text-align: right;
+            
+        }
+    }
+
 }

@@ -1,0 +1,31 @@
+<div class="container-table-all-alphabet">
+    <div class="card">
+        <div class="head-card">
+            <h3>
+                Pokemones por abecedario.
+            </h3>
+        </div>
+        <div class="table-pokemons">
+           
+            <div class="tbody">
+                <div *ngFor="let letter of pokemonsAgrupados | keyvalue; let i = index">
+                    
+                    <div class="tr" (click)="expandCollapse(i)">
+                        <div class="td">
+                            <h3>{{letter.key}}</h3>
+                        </div>
+                        <div class="td"></div>
+                    </div>
+                    <div class="collapse" id="collapseAlphabet-{{i}}">
+                        <div class="tr none-select" *ngFor="let pokemon of letter.value;">
+                            <div class="td" style="text-transform: capitalize;">{{pokemon.name}}</div>
+                            <div class="td"></div>
+                        </div>
+                    </div> 
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

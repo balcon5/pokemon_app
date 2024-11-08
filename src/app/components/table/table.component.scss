@@ -1,42 +1,25 @@
-.table-pokemons{
-    width: 100%;
-    border-collapse: collapse;
-    color: #555;
-    thead{
-        th{
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-            padding: 10px 10px 10px 10px;
-        }
-        th:last-child{
-            text-align: right;
-        }
-    }
-    tbody{
-        tr{
-            cursor: pointer;
-        }
-        tr:last-child td{
-            border-bottom: none;
-        }
-    
-        tr:hover{
-            background-color: #eaf9ff;
-        }
-        td{
-            width: 50%;
-            padding: 10px 10px 10px 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        td:last-child{
-            text-align: right;
-            
-        }
-    }
-    
-    
 
-    
+
+
+.container-input-search{
+    width: 50%;
+    padding: 9px 10px;
+    display: flex;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    align-items: center;
+    input{
+        border: none;
+        width: 100%;
+        color: #777;
+        &:focus{
+            outline: none;
+        }
+    }
+    i{
+        margin: 0 7px -3px;
+        color: #777;
+    }
 }
 
 .paginator-table{

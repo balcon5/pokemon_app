@@ -10,7 +10,7 @@ import { Pokemon } from 'src/app/interfaces/pokemon.interface';
 export class HeaderComponent {
 
 
-  public favoritePokemon: Pokemon | undefined;
+  public favoritePokemon: Pokemon | null = null;
 
   constructor(private pokemonService: PokemonService){
 
@@ -18,7 +18,7 @@ export class HeaderComponent {
 
   ngOnInit(){
     
-    this.pokemonService.favoritePokemon.subscribe( (poke: Pokemon) => {
+    this.pokemonService.favoritePokemon.subscribe( (poke: Pokemon | null) => {
       this.favoritePokemon = poke;
     });
     

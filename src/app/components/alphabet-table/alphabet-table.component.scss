@@ -1,0 +1,14 @@
+.container-table-all-alphabet{
+    width: calc(100% - 60px);
+    padding: 10px 30px;
+    display: flex;
+}
+.collapse{
+    height: 0px;
+    position: relative;
+    overflow: hidden;
+}
+
+.collapse-active{
+    height: auto;
+}

@@ -1,3 +1,26 @@
 <div class="card">
-
+    <div class="head-card">
+        <h3>
+            ¿Quien es ese pokemon?
+        </h3>
+    </div>
+    <div class="container-poke-detail">
+        
+           <img src="{{selectedPokemon?.imgUrlLarge}}" alt="">
+            <h3 style="text-align: center;">
+                {{selectedPokemon?.name}} 
+            </h3>
+           <div class="row-detal-pokemon">
+                <p>Altura</p>
+                <p>{{selectedPokemon?.height}}</p>
+           </div>
+           <div class="row-detal-pokemon">
+                <p>Peso</p>
+                <p>{{selectedPokemon?.weight}}</p>
+           </div>
+           <div class="row-detal-pokemon" *ngFor="let types of selectedPokemon?.types">
+            <p>Tipo</p>
+            <p>{{types.type.name}}</p>
+       </div>
+    </div>
 </div>

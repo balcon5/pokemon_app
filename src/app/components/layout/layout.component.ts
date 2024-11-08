@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PokemonList } from 'src/app/interfaces/pokemon.interface';
 
 @Component({
   selector: 'app-layout',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class LayoutComponent {
 
+  public pokemons:PokemonList[] = [{name:'',favorite:false}];
+
+  getPokemons(evt: PokemonList[]){
+    console.log('evt', evt);
+    this.pokemons = evt;
+  }
 }

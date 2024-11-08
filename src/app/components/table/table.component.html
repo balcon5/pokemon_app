@@ -1,5 +1,36 @@
 <div class="card">
-    <table class="table-pokemons">
+    <div class="head-card">
+        <h3>
+            Lista de pokemones
+        </h3>
+        <div class="container-input-search">
+            <input type="text" placeholder="Busca tu pokemon" (input)="searchPokemon()" #inpuSearch>
+            <i class="fi fi-rr-search"></i>
+        </div>
+    </div>
+    <div class="table-pokemons">
+        <div class="thead">
+            <div class="tr">
+                <div class="th">
+                    Nombre
+                </div>
+                <div class="th">
+                    Favorito
+                </div>
+            </div>
+        </div>
+        <div class="tbody">
+            <div class="tr" *ngFor="let pokemon of pokemonsInTable" (click)="selectPokemon(pokemon.name)">
+                <div class="td">{{pokemon.name}}</div>
+                <div class="td">
+                    <i class="fi fi-rr-star" *ngIf="!pokemon.favorite" (click)="setFavoritePokemon(pokemon.name, $event)"></i>
+                    <i class="fi fi-sr-star" style="color: gold;" *ngIf="pokemon.favorite"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- <table class="table-pokemons">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -16,7 +47,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
     <div class="paginator-table">
         <span class="number-paginator">{{initialPokemonOfPage}}</span>
         <span> - </span>
