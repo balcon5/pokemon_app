@@ -1,7 +1,10 @@
 import { Component, ElementRef, OnDestroy, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Pokemon, PokemonList } from 'src/app/interfaces/pokemon.interface';
+import { Store } from '@ngrx/store';
+import { Pokemon, PokemonList, ResultPokemon } from 'src/app/interfaces/pokemon.interface';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { PokemonState } from './../../store/pokemon.state';
+import { loadPokemons } from './../../store/pokemon.actions';
 
 @Component({
   selector: 'app-table',
@@ -11,12 +14,15 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class TableComponent implements OnInit, OnDestroy {
 
 
+  pokemonData$: Observable<ResultPokemon | null>;
+  loading$: Observable<boolean>;
+
   private pokemonsSubscription: Subscription | undefined;
   public pokemons: any | undefined;
   public favoritePokemon: Pokemon | null= null;
 
   public actualPokemonsOffset: number = 0;
-  public totalPokemons = 0;
+  public totalPokemons: number = 0;
   public initialPokemonOfPage = 1;
   public finalPokemonOfPage = 10;
   public finalPokemonOfPageInHtml = 10;
@@ -27,21 +33,34 @@ export class TableComponent implements OnInit, OnDestroy {
   @ViewChild('inpuSearch')inputSearch!:ElementRef;
 
 
-  constructor(private pokemonService:PokemonService){
-
+  constructor(private pokemonService:PokemonService,
+              private store: Store<{ pokemon: PokemonState }>
+  ){
+    this.pokemonData$ = this.store.select(state => state.pokemon.data);
+    this.loading$ = this.store.select(state => state.pokemon.loading);
   }
 
   ngOnInit(){
 
-    this.getPokemonSingle('charizard').then((pokemon: Pokemon) =>{
-      this.pokemonService.favoritePokemon.next(pokemon);
-      this.favoritePokemon = this.pokemonService.favoritePokemon.value;
-      this.getPokemonsByService(this.actualPokemonsOffset);
+    this.store.dispatch(loadPokemons());
+    this.pokemonsSubscription = this.pokemonData$.subscribe((pokemon:ResultPokemon | null) =>{
+      this.totalPokemons = pokemon?.count === undefined ? 0 : pokemon?.count;
+        this.pokemons = pokemon?.results.map((poke: Pokemon, index: number) => {
+          return {
+            name: poke.name,
+            favorite: index === 0 ? true : false
+          }
     });
-    
-    
-
-  }
+    if(this.pokemons !== undefined){
+      this.pokemonService.allPokemons.next(this.pokemons);
+      this.setFavoritePokemon( this.pokemons[0].name);
+      this.getPokemonSingle(this.pokemons[0].name).then((pokemon:Pokemon)=>{
+        this.pokemonService.selectedPokemon.next(pokemon);
+      });
+      this.pokemonsToShow();
+    }
+  });
+}
 
   ngOnDestroy(){
     
@@ -49,26 +68,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   }
 
-  getPokemonsByService(offset: number):any{
-    this.pokemonsSubscription = this.pokemonService.getPokemons(offset)
-      .subscribe((pokemon: any) => {
-        this.totalPokemons = pokemon.count;
-        this.pokemons = pokemon.results.map((poke: PokemonList, index: number) => {
-          return {
-            name: poke.name,
-            favorite: index === 0 ? true : false
-          }
-        });
-
-        this.getPokemonSingle(this.pokemons[0].name).then((pokemon: Pokemon) => {
-            console.log('pokemon', pokemon);
-            this.pokemonService.selectedPokemon.next(pokemon);
-        });
-        this.pokemonService.allPokemons.next(this.pokemons);
-        this.setFavoritePokemon( this.pokemons[0].name);
-        this.pokemonsToShow();
-      });
-  }
 
   pokemonsToShow(){
     
@@ -119,7 +118,8 @@ export class TableComponent implements OnInit, OnDestroy {
     weight:pokemonData.weight,
     types:pokemonData.types,
     imgUrlMini: pokemonData.sprites.front_default,
-    imgUrlLarge: pokemonData.sprites.other['official-artwork'].front_default
+    imgUrlLarge: pokemonData.sprites.other['official-artwork'].front_default,
+    favorite:false
     }
   }
 

@@ -21,7 +21,6 @@ export class AlphabetTableComponent implements OnInit {
       this.pokemonsOrderByLetter = pokeList;
       this.pokemonsOrderByLetter.sort((a: PokemonList, b:PokemonList) => a.name.localeCompare(b.name));
       this.pokemonsAgrupados = this.agruparPorLetra(this.pokemonsOrderByLetter);
-      console.log('this.pokemonsOrderByLetter', this.pokemonsAgrupados);
     });
   }
 
@@ -38,7 +37,6 @@ export class AlphabetTableComponent implements OnInit {
   
   expandCollapse(numRow: number){
     const collapses: NodeListOf<HTMLDivElement> = document.querySelectorAll('.collapse');
-    console.log('collapses', collapses);
     const collapseSelected: HTMLElement | null= document.getElementById('collapseAlphabet-' + numRow);
 
     collapses.forEach(row => {

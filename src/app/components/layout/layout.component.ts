@@ -12,7 +12,6 @@ export class LayoutComponent {
   public pokemons:PokemonList[] = [{name:'',favorite:false}];
 
   getPokemons(evt: PokemonList[]){
-    console.log('evt', evt);
     this.pokemons = evt;
   }
 

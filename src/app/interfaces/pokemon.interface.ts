@@ -5,6 +5,7 @@ export interface Pokemon{
     types:PokemonTypes[];
     imgUrlMini:string;
     imgUrlLarge:string;
+    favorite: boolean | null;
 }
 
 export interface PokemonType{
@@ -19,4 +20,12 @@ export interface PokemonTypes{
 export interface PokemonList{
     name:string;
     favorite:boolean;
+}
+
+export interface ResultPokemon {
+    count: number;
+    next: string | null;
+    previous: string | null;
+    results: Pokemon[]; // Aquí es donde se almacenan los Pokémon
   }
+
